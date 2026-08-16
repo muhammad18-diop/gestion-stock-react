@@ -1,0 +1,14 @@
+.filtre button{
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.filtre button:hover{
+    background-color: transparent;
+    color: blue;
+    font-weight: bold;
+}
