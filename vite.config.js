@@ -10,5 +10,5 @@ export default defineConfig({
     tailwindcss(),
     flowbiteReact()
   ],
-  base: "/cours-react/",
+  base: "/gestion-stock-react/",
 })
