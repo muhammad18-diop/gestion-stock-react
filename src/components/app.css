@@ -12,3 +12,18 @@
     color: blue;
     font-weight: bold;
 }
+
+.conteneur-liste{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    flex-wrap: wrap;
+    margin-right: 50%;
+    margin-top: 20px;
+}
+
+.button{
+   display: block;
+   margin-left: 40%;
+}

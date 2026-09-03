@@ -5,6 +5,9 @@ import Home from './pages/Home'
 import AjouterProduit from './components/AjoutProduit'
 import Afficher from './components/AfficherProduit'
 import "./components/app.css"
+import Ajouter from './components/Ajout'
+import Affichons from './components/listProduit'
+
 
 
 function App() {
@@ -35,6 +38,43 @@ function App() {
     if (filtre === 'terminees') return tache.terminer;
     return true; 
   });
+
+  const [list, setList] = useState([])
+
+  function ajouterUnProduit(prod){
+    setList([...list, prod])
+  }
+
+  useEffect(() => {
+    console.log(list);
+  },[list])
+
+  useEffect(() => {
+    localStorage.setItem("donnees", JSON.stringify(list))
+  }, [list])
+
+  const [filtrer, setFiltrer] = useState("Tous");
+
+const produitFiltrer = list.filter((item) => {
+  // 1. Si la catégorie "Tous" est sélectionnée, on conserve tout
+  if (filtrer === "Tous") return true;
+
+  // 2. Sinon, on compare directement la catégorie sélectionnée à celle de l'élément
+  return item.categorie === filtrer;
+});
+
+const produitsAffiches = list.filter((item) => {
+    // 1. Vérifie si le nom correspond au texte recherché (en minuscules pour éviter les problèmes de casse)
+    const correspondRecherche = item.nom
+      .toLowerCase()
+      .includes(recherche.toLowerCase());
+
+    // 2. Vérifie la catégorie
+    const correspondCategorie =
+      filtrer === "Tous" || item.categorie === filtrer;
+
+    return correspondRecherche && correspondCategorie;
+  });
   return (
     <>
       
@@ -53,6 +93,17 @@ function App() {
        </div>
                <Afficher tableau={tachesFiltrees} supprimer={supprimer} terminer={basculer} filtre={tachesFiltrees}/>
 
+               <Ajouter produit={ajouterUnProduit}/>
+
+               
+
+               <div className="button">
+                <button onClick={() => setFiltrer("Tous")}> Tous</button>
+               <button onClick={() => setFiltrer("Vetement")}> Vetement</button>
+               <button onClick={() => setFiltrer("Electronique")}> Electronique</button>;
+               <Affichons liste={produitFiltrer}/>
+
+               </div>
     </>
   )
 }
