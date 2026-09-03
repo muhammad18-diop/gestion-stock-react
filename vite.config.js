@@ -10,4 +10,5 @@ export default defineConfig({
     tailwindcss(),
     flowbiteReact()
   ],
+  base: "/cours-react/",
 })
